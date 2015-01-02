@@ -41,8 +41,7 @@ public class startScreen : MonoBehaviour {
 	{
 		// Restart this level
 		gameOverSound.Stop ();
-		this.Play ();
-		Application.LoadLevel(1);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 	
 	public void startGame()
@@ -64,11 +63,11 @@ public class startScreen : MonoBehaviour {
 			
 			paused = true;
 			isGameStpoed=true;
-			pauseSound.Play ();
 			//spriteRenderer.sprite = pause_sprite1_Pause; // set the sprite to sprite1- pause
 	}
 
-	public void Play () {
+	public void Play () 
+	{
 			Time.timeScale = 1;
 			pauseSound.Stop ();
 			Debug.Log ("play pressed");
@@ -78,11 +77,14 @@ public class startScreen : MonoBehaviour {
 			
 			paused = false;
 			isGameStpoed=false;
+			//spriteRenderer.sprite = pause_sprite2_Play; // set the sprite to sprite1- play
 	}
 
-	public void gameOver(){
+	public void gameOver()
+	{
 		gameOverSound.Play ();
 		Time.timeScale = 0;
+		Debug.Log ("game over");
 		// Activate the pause menu UI element
 		if (gameOverMenu != null)
 			gameOverMenu.SetActive(true);
@@ -96,18 +98,19 @@ public class startScreen : MonoBehaviour {
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
 		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
 			
-		gameOverSound.Play ();
+		
 		paused = true;
 		isGameStpoed=true;
 	}
 
 	public void startNewGame(){
-		this.Play ();
-		Application.LoadLevel(1);// Restart the game
+		// Restart the game
+		Application.LoadLevel(1);
 	}
 
 	// Quit the game
-	public void Quit(){	
+	public void Quit()
+	{
 		Application.Quit();
 	}
 }
