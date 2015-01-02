@@ -40,9 +40,8 @@ public class startScreen : MonoBehaviour {
 	public void RestartLevel()
 	{
 		// Restart this level
-		this.Play ();
 		gameOverSound.Stop ();
-		Application.LoadLevel(1);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 	
 	public void startGame()
@@ -50,7 +49,7 @@ public class startScreen : MonoBehaviour {
 		Application.LoadLevel(1);
 		Debug.Log ("should load scene 1");
 		highScore = PlayerPrefs.GetInt(highScoreKey,0);
-		//Debug.Log (highScoreKey);
+		Debug.Log (highScoreKey);
 	}
 	
 	public void Pause () 
