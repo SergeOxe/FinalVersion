@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class startScreen : MonoBehaviour {
 	public GameObject pauseMenu;				// The pause menu UI element to be activated on pause
@@ -10,13 +11,13 @@ public class startScreen : MonoBehaviour {
 	public SpriteRenderer spriteRenderer; 
 	public int highScore;
 	string highScoreKey = "HighScore";
+	public GameObject controllerGameObject;
 	
 	private bool isGameStpoed=false;
 	// Use this for initialization
 	void Start () {
-		// we are accessing the SpriteRenderer that is attached to the Gameobject
-		
-		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		//controllerGameObject = GameObject.FindGameObjectWithTag ("GameController");
 		Screen.autorotateToPortrait = false;
 		Screen.orientation = ScreenOrientation.Landscape;
 	}
@@ -86,6 +87,16 @@ public class startScreen : MonoBehaviour {
 		// Activate the pause menu UI element
 		if (gameOverMenu != null)
 			gameOverMenu.SetActive(true);
+
+		//Display final score and record
+		int finalScore = controllerGameObject.GetComponent<Controller> ().getScore ();
+		Debug.Log ("score" + finalScore);
+		Text curScore = GameObject.FindGameObjectWithTag ("final_score_text").GetComponent<Text> ();
+		curScore.text = "YOU SCORED: " + finalScore;
+
+		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
+		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
+			
 		
 		paused = true;
 		isGameStpoed=true;

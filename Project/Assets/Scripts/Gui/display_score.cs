@@ -23,7 +23,7 @@ public class display_score : MonoBehaviour {
 		//Get the highScore from player prefs if it is there, 0 otherwise.
 		highScore = PlayerPrefs.GetInt(highScoreKey,0);
 		textHighScore = highScoreTextUi.GetComponent<Text>();
-		textHighScore.text="Record : " + highScore.ToString();
+		textHighScore.text="Record: " + highScore.ToString();
 		Debug.Log (highScore);
 	}
 
