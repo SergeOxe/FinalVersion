@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 			//horizontal = Input.acceleration.x;
 				if(Input.GetTouch(0).phase == TouchPhase.Moved){
 					horizontal = Input.GetTouch(0).deltaPosition.x;
-					speed = 0.7f;
+					speed = 0.4f;
 				}else
 					horizontal = 0;
 		}
