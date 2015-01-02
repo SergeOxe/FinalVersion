@@ -12,6 +12,8 @@ public class startScreen : MonoBehaviour {
 	public int highScore;
 	string highScoreKey = "HighScore";
 	public GameObject controllerGameObject;
+	public AudioSource pauseSound;
+	public AudioSource gameOverSound;
 	
 	private bool isGameStpoed=false;
 	// Use this for initialization
@@ -38,6 +40,7 @@ public class startScreen : MonoBehaviour {
 	public void RestartLevel()
 	{
 		// Restart this level
+		gameOverSound.Stop ();
 		Application.LoadLevel(Application.loadedLevel);
 	}
 	
@@ -51,11 +54,7 @@ public class startScreen : MonoBehaviour {
 	
 	public void Pause () 
 	{
-			//GameObject canvas_popUpMenu = GameObject.FindGameObjectWithTag ("popUpmenuCanvas");
-			//canvas_popUpMenu.SetActive(true);
-			//canvas_popUpMenu.GetComponent<Canvas>().enabled=true;
-			//yield return new WaitForSeconds(1);
-			
+			pauseSound.Play ();
 			Time.timeScale = 0;
 			Debug.Log ("pause pressed");
 			// Activate the pause menu UI element
@@ -70,6 +69,7 @@ public class startScreen : MonoBehaviour {
 	public void Play () 
 	{
 			Time.timeScale = 1;
+			pauseSound.Stop ();
 			Debug.Log ("play pressed");
 			// Deactivate the pause menu UI element
 			if (pauseMenu != null)
@@ -82,6 +82,7 @@ public class startScreen : MonoBehaviour {
 
 	public void gameOver()
 	{
+		gameOverSound.Play ();
 		Time.timeScale = 0;
 		Debug.Log ("game over");
 		// Activate the pause menu UI element
@@ -106,13 +107,7 @@ public class startScreen : MonoBehaviour {
 		// Restart the game
 		Application.LoadLevel(1);
 	}
-	
-	public void setSound(float sliderValue)
-	{
-		Debug.Log ("sound slider value= " + sliderValue);
-		Debug.Log ("sound slider value test");
-		AudioListener.volume = sliderValue/10;
-	}
+
 	// Quit the game
 	public void Quit()
 	{
