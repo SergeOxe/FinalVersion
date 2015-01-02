@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class startScreen : MonoBehaviour {
 	public GameObject pauseMenu;				// The pause menu UI element to be activated on pause
 	public GameObject gameOverMenu;				// The game over menu UI element to be activated on pause
+	public GameObject creditsMenu;
+
 	private bool paused = false;				// The boolean value to keep track of whether or not the game is currently paused
 	public Sprite pause_sprite1_Pause; // Drag your first sprite here
 	public Sprite pause_sprite2_Play; // Drag your second sprite here
@@ -14,6 +16,7 @@ public class startScreen : MonoBehaviour {
 	public GameObject controllerGameObject;
 	public AudioSource pauseSound;
 	public AudioSource gameOverSound;
+
 	
 	private bool isGameStpoed=false;
 	// Use this for initialization
@@ -41,7 +44,8 @@ public class startScreen : MonoBehaviour {
 	{
 		// Restart this level
 		gameOverSound.Stop ();
-		Application.LoadLevel(Application.loadedLevel);
+		this.Play ();
+		Application.LoadLevel(1);
 	}
 	
 	public void startGame()
@@ -78,6 +82,12 @@ public class startScreen : MonoBehaviour {
 			paused = false;
 			isGameStpoed=false;
 			//spriteRenderer.sprite = pause_sprite2_Play; // set the sprite to sprite1- play
+	}
+
+	public void displayCredits()
+	{
+		pauseMenu.SetActive (false);
+		creditsMenu.SetActive (true);
 	}
 
 	public void gameOver()

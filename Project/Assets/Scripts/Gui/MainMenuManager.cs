@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
 	public Image controlsPanel;					// The UI panel that shows the controls
-	private bool fadeOutToBlack = false;		// Whether or not the UI is fading out to black
-	private bool fadeIn = false;				// Whether or not the UI is fading in from black
 	private bool isSoundOn=true;
 
 	// Use this for initialization
