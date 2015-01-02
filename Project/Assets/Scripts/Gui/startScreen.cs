@@ -98,13 +98,15 @@ public class startScreen : MonoBehaviour {
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
 		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
 			
-		
+		gameOverSound.Play ();
 		paused = true;
 		isGameStpoed=true;
 	}
 
 	public void startNewGame(){
 		// Restart the game
+		gameOverSound.Stop ();
+		this.Play ();
 		Application.LoadLevel(1);
 	}
 
