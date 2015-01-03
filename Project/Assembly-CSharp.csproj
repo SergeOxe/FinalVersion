@@ -93,6 +93,7 @@
      <Compile Include="Assets\createEnemeiesWave.cs" />
      <Compile Include="Assets\enemyClass.cs" />
      <Compile Include="Assets\enemyDemage.cs" />
+     <Compile Include="Assets\openSceneScriptAnimation.cs" />
      <Compile Include="Assets\pointsAnimation.cs" />
      <Compile Include="Assets\script.cs" />
  <Reference Include="UnityEngine.UI">
