@@ -16,7 +16,8 @@ public class EnemyMovment : MonoBehaviour {
 		waveTime = WaveMovementTime;
 		switch (movment) {
 			case Movment.Horizontal:
-				directionOfMovment = new Vector3(1f,0f,0f);
+				//directionOfMovment = new Vector3(1f,0f,0f);
+				directionOfMovment = new Vector3(1f,-1f,0f);
 				break;
 			case Movment.Vertical:
 				directionOfMovment = new Vector3(0f,-1f,0f);

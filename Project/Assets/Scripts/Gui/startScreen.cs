@@ -50,6 +50,7 @@ public class startScreen : MonoBehaviour {
 	
 	public void startGame()
 	{
+		this.Play ();
 		Application.LoadLevel(1);
 		Debug.Log ("should load scene 1");
 		highScore = PlayerPrefs.GetInt(highScoreKey,0);
