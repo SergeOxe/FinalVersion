@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour {
 	private Image healthBarImage;
 	private GameObject GameController; 
 	private GameObject currentBullet;
+	public AudioClip[] rewardLiveClips;
+	public AudioClip[] bombClips;
+	public AudioClip[] yayClips;
+	public AudioClip[] ouchBear;
 	private float FPS;
 	private float timeLeft;
 	int currentBull;
@@ -97,6 +101,8 @@ public class PlayerController : MonoBehaviour {
 	public void Hit () {
 		HP--;
 		downgradeShots ();
+		int i = Random.Range (0, ouchBear.Length);
+		AudioSource.PlayClipAtPoint (ouchBear [i], transform.position);
 		if(healthBarImage.fillAmount > 0 )
 		{
 			healthBarImage.fillAmount = healthBarImage.fillAmount - 0.333f;
@@ -117,15 +123,22 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void reactToReward(Enum_RewardType rewardType){
+		int i;
 				switch (rewardType) {
 				case Enum_RewardType.BOMB:
 					this.Hit();
+					i = Random.Range (0, bombClips.Length);
+					AudioSource.PlayClipAtPoint (bombClips [i], transform.position);
 						break;
 				case Enum_RewardType.LIVES: 
 						addLive();
+						i = Random.Range (0, rewardLiveClips.Length);
+						AudioSource.PlayClipAtPoint (rewardLiveClips [i], transform.position);
 						break;
 				case Enum_RewardType.SHOTS:
 						upgradeShots();
+						i = Random.Range (0, yayClips.Length);
+						AudioSource.PlayClipAtPoint (yayClips [i], transform.position);
 						break;
 				}
 		}

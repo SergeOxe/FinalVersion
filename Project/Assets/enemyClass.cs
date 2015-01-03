@@ -10,6 +10,7 @@ public class enemyClass : MonoBehaviour {
 	//public Sprite demaged;
 	//public Sprite dead;
 	public AudioClip[] deathClips;
+	public AudioClip[] throwClips;
 	public Vector4 oddsVector; //[0] :shots  [1]:lives [2]:bomb  [3]:empty
 	//private SpriteRenderer ren;	
 	private Animator anim;
@@ -42,6 +43,8 @@ public class enemyClass : MonoBehaviour {
 		float newAlpha = this.gameObject.GetComponent<SpriteRenderer> ().color.a - alphaToDecreaseWhenHit;
 		this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (this.gameObject.GetComponent<SpriteRenderer> ().color.r, this.gameObject.GetComponent<SpriteRenderer> ().color.g,
 		                                                                   this.gameObject.GetComponent<SpriteRenderer> ().color.b, newAlpha);
+		int i = Random.Range (0, throwClips.Length);
+		AudioSource.PlayClipAtPoint (throwClips [i], transform.position);
 		//if (HP == 1)
 		//ren.sprite = demaged;
 		if (HP <= 0) {
