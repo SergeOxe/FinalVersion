@@ -21,7 +21,12 @@ public class EnemyReward : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col){
 		if (col.gameObject.tag == "Player") {
-			Destroy(this.gameObject);
+			this.gameObject.collider2D.enabled = false;
+			if(rewardType == Enum_RewardType.BOMB){
+				gameObject.GetComponent<Animator>().SetBool ("Boom", true);
+			}
+			else
+				Destroy(this.gameObject);
 			col.gameObject.GetComponent<PlayerController>().reactToReward(rewardType);
 		}
 	}
