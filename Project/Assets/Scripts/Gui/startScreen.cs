@@ -15,6 +15,8 @@ public class startScreen : MonoBehaviour {
 	public int highScore;
 	string highScoreKey = "HighScore";
 	public GameObject controllerGameObject;
+	public AudioClip[] gameoverClips;
+	public AudioClip[] gameWonClips;
 	public AudioSource pauseSound;
 	public AudioSource gameOverSound;
 
@@ -97,7 +99,9 @@ public class startScreen : MonoBehaviour {
 
 	public void gameOver()
 	{
-		gameOverSound.Play ();
+		int i = Random.Range (0, gameoverClips.Length);
+		AudioSource.PlayClipAtPoint (gameoverClips [i], transform.position);
+		//gameOverSound.Play ();
 		Time.timeScale = 0;
 		Debug.Log ("game over");
 		// Activate the pause menu UI element
@@ -113,14 +117,16 @@ public class startScreen : MonoBehaviour {
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
 		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
 			
-		gameOverSound.Play ();
+		//gameOverSound.Play ();
 		paused = true;
 		isGameStpoed=true;
 	}
 
 	public void gameWon()
 	{
-		gameOverSound.Play ();
+		int i = Random.Range (0, gameWonClips.Length);
+		AudioSource.PlayClipAtPoint (gameWonClips [i], transform.position);
+		//gameOverSound.Play ();
 		Time.timeScale = 0;
 		Debug.Log ("game won");
 		// Activate the pause menu UI element
@@ -136,7 +142,8 @@ public class startScreen : MonoBehaviour {
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
 		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
 		
-		gameOverSound.Play ();
+		//gameOverSound.Play ();
+
 		paused = true;
 		isGameStpoed=true;
 	}
