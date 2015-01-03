@@ -6,6 +6,7 @@ public class startScreen : MonoBehaviour {
 	public GameObject pauseMenu;				// The pause menu UI element to be activated on pause
 	public GameObject gameOverMenu;				// The game over menu UI element to be activated on pause
 	public GameObject creditsMenu;
+	public GameObject gameWonMenu;
 
 	private bool paused = false;				// The boolean value to keep track of whether or not the game is currently paused
 	public Sprite pause_sprite1_Pause; // Drag your first sprite here
@@ -17,7 +18,7 @@ public class startScreen : MonoBehaviour {
 	public AudioSource pauseSound;
 	public AudioSource gameOverSound;
 
-	
+
 	private bool isGameStpoed=false;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class startScreen : MonoBehaviour {
 		//controllerGameObject = GameObject.FindGameObjectWithTag ("GameController");
 		Screen.autorotateToPortrait = false;
 		Screen.orientation = ScreenOrientation.Landscape;
+
 	}
 	
 	// Update is called once per frame
@@ -39,6 +41,8 @@ public class startScreen : MonoBehaviour {
 //				Play();
 //		}
 	}
+
+
 	
 	public void RestartLevel()
 	{
@@ -109,6 +113,29 @@ public class startScreen : MonoBehaviour {
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
 		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
 			
+		gameOverSound.Play ();
+		paused = true;
+		isGameStpoed=true;
+	}
+
+	public void gameWon()
+	{
+		gameOverSound.Play ();
+		Time.timeScale = 0;
+		Debug.Log ("game won");
+		// Activate the pause menu UI element
+		if (gameWonMenu != null)
+			gameWonMenu.SetActive(true);
+		
+		//Display final score and record
+		int finalScore = controllerGameObject.GetComponent<Controller> ().getScore ();
+		Debug.Log ("score" + finalScore);
+		Text curScore = GameObject.FindGameObjectWithTag ("final_score_text").GetComponent<Text> ();
+		curScore.text = "YOU SCORED: " + finalScore;
+		
+		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
+		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
+		
 		gameOverSound.Play ();
 		paused = true;
 		isGameStpoed=true;

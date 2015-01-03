@@ -64,15 +64,10 @@ public class enemyClass : MonoBehaviour {
 	}
 	
 	private void Kill (){
-		//		anim.SetBool ("Die", true);
-		//		// Play a random audioclip from the deathClips array.
-		//		int i = Random.Range (0, deathClips.Length);
-		//		this.gameObject.collider2D.enabled = false;
-		//		AudioSource.PlayClipAtPoint (deathClips [i], transform.position);
 		createEnemyExplosion ();
-		
-		
-		
+		GameObject gameManager = GameObject.FindGameObjectWithTag ("GameController");
+		gameManager.GetComponent<Controller>().increaseDeadenemyCount();
+
 		Instantiate (points, this.transform.position, Quaternion.identity);
 		GameController.GetComponent<Controller> ().addScore (pointsToScore);
 		
