@@ -19,4 +19,9 @@ public class createEnemeiesWave : MonoBehaviour {
 			yield return new WaitForSeconds (timeUntilNextEnemy[i]);
 		}
 	}
+
+	public int getEnemiesCount(){
+		print ("Enemies in this wave is " +enemies.Length);
+		return enemies.Length;
+	}
 }

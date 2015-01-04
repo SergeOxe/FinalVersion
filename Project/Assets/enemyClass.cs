@@ -88,6 +88,9 @@ public class enemyClass : MonoBehaviour {
 			Instantiate (rewards[2], this.transform.position, Quaternion.identity);
 			return;
 		}
+
+	//GameObject wavesManager = GameObject.FindGameObjectWithTag ("WavesManagerController");
+	//wavesManager.GetComponent<WavesMangerScript>().decreaseEnemyCount();
 	}
 	
 	void OnCollisionEnter2D (Collision2D col){

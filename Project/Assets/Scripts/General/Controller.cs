@@ -23,7 +23,6 @@ public class Controller : MonoBehaviour {
 	public void increaseDeadenemyCount()
 	{
 		deadenemyCounter++;
-		print (deadenemyCounter);
 		if (deadenemyCounter >= maxEnemiesToEndGame) {
 			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
 			manager.GetComponent<startScreen>().gameWon();

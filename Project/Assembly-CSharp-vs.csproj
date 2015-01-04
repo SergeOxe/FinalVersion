@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\display_shots.cs" />
      <Compile Include="Assets\ShotsBoundries.cs" />
      <Compile Include="Assets\Tutorial.cs" />
+     <Compile Include="Assets\WavesMangerScript.cs" />
      <Compile Include="Assets\createEnemeiesWave.cs" />
      <Compile Include="Assets\enemyClass.cs" />
      <Compile Include="Assets\enemyDemage.cs" />
