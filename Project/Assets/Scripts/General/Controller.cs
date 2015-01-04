@@ -22,13 +22,13 @@ public class Controller : MonoBehaviour {
 
 	public void increaseDeadenemyCount()
 	{
-		deadenemyCounter++;
-		if (deadenemyCounter >= maxEnemiesToEndGame) {
-			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
-			manager.GetComponent<startScreen>().gameWon();
-				
-
-		}
+//		deadenemyCounter++;
+//		if (deadenemyCounter >= maxEnemiesToEndGame) {
+//			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
+//			manager.GetComponent<startScreen>().gameWon();
+//				
+//
+//		}
 	}
 
 	public void addScore(int points){

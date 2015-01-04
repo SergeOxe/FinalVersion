@@ -97,8 +97,16 @@ public class startScreen : MonoBehaviour {
 		creditsMenu.SetActive (true);
 	}
 
-	public void gameOver()
+	IEnumerator wait ()
 	{
+		yield return new WaitForSeconds (10.0f);
+	}
+
+	public void gameOver()
+
+
+	{
+		StartCoroutine (wait ());
 		int i = Random.Range (0, gameoverClips.Length);
 		AudioSource.PlayClipAtPoint (gameoverClips [i], transform.position);
 		//gameOverSound.Play ();
