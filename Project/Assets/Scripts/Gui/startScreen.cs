@@ -103,8 +103,7 @@ public class startScreen : MonoBehaviour {
 	}
 
 	public void gameOver()
-
-
+	
 	{
 		StartCoroutine (wait ());
 		int i = Random.Range (0, gameoverClips.Length);

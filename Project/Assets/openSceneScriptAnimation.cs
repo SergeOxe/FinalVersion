@@ -10,6 +10,25 @@ public class openSceneScriptAnimation : MonoBehaviour {
 	public AudioClip bearEating;
 	public AudioClip yellingPenguin;
 
+	public void Start()
+	{
+		Screen.autorotateToPortrait = false;
+		Screen.orientation = ScreenOrientation.Landscape;
+		}
+
+	public void ChangeScene()
+	{
+		Application.LoadLevel (1);
+		}
+
+
+	public void Update()
+	{
+		if (Input.GetMouseButton (0))
+						ChangeScene ();
+
+		}
+
 
 	public void  playSleepingPenguinSound(){
 

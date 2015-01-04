@@ -23,7 +23,7 @@ public class WavesMangerScript : MonoBehaviour {
 
 		BeforeWaveText = GameObject.FindGameObjectWithTag("MainTextWaves").GetComponent<Text>();
 		StartCoroutine (StartGame ());
-		BeforeWaveText.text = "Start Game";
+		BeforeWaveText.text = "Prepare";
 	
 	}
 	
@@ -36,8 +36,9 @@ public class WavesMangerScript : MonoBehaviour {
 			BeforeWaveText.text = "";
 			Instantiate (CreateWaves[i], this.transform.position, Quaternion.identity);
 			yield return new WaitForSeconds (TimeBeforeNextRoundInSec[i]);//Delay before next round
+			print (TimeBeforeNextRoundInSec[i]);
 		}
-		BeforeWaveText.text = "You win";
+		BeforeWaveText.text = "";//"You win";
 	}
 
 	public void decreaseEnemyCount(){
