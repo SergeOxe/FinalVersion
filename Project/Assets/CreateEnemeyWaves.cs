@@ -6,12 +6,12 @@ public class CreateEnemeyWaves : MonoBehaviour {
 	public float TimeUntilNextWave;
 	public float TimeUntilFirstWave;
 	public float TimeUntilNextRoundOfWaves;
-	private int TotalEnemiesInWaveSet = 0;
+	public int TotalEnemiesInWaveSet = 0;
 	
 	void Start (){
-	//	foreach (GameObject wave in waves) {
-	//		TotalEnemiesInWaveSet =TotalEnemiesInWaveSet+ wave.gameObject.GetComponent<createEnemeiesWave> ().getEnemiesCount ();
-	//	}
+		foreach (GameObject wave in waves) {
+			TotalEnemiesInWaveSet =TotalEnemiesInWaveSet+ wave.gameObject.GetComponent<createEnemeiesWave> ().getEnemiesCount();
+		}
 
 		StartCoroutine (CreateWaves ());
 	}
@@ -28,7 +28,7 @@ public class CreateEnemeyWaves : MonoBehaviour {
 	}
 
 	public int GetTotalEnemiesInSet(){
-		print ("Enemies in this wave is " +TotalEnemiesInWaveSet);
+		print("GetTotalEnemiesInSet " + TotalEnemiesInWaveSet);
 		return TotalEnemiesInWaveSet;
 	}
 }

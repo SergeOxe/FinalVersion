@@ -7,42 +7,41 @@ public class WavesMangerScript : MonoBehaviour {
 	public GameObject[] CreateWaves;
 	private bool isGameOver;
 	private Text BeforeWaveText;
-	//public float[] TimeBeforeWaveInSec;
 	public float timeUntilFirstWave;
-	public float[] TimeBeforeNextRoundInSec;
+	public float TimeBeforeNextRoundInSec;
 	public float textTime;
-	public int EnemiesCount = 0;
-	public int [] countEnemiesInCreateWaves;
+	public int EnemiesCount = 1;
+	public int countEnemiesInCreateWaves;
+
+	private int currentWave = 0;
 
 	// Use this for initialization
 	void Start () {
-		//countEnemiesInCreateWaves = new int[CreateWaves.Length];
-		//for (int i= 0; i< CreateWaves.Length; i++) {
-		//	countEnemiesInCreateWaves[i] = CreateWaves[i].gameObject.GetComponent<CreateEnemeyWaves>().GetTotalEnemiesInSet();
-		//}
-
 		BeforeWaveText = GameObject.FindGameObjectWithTag("MainTextWaves").GetComponent<Text>();
-		StartCoroutine (StartGame ());
 		BeforeWaveText.text = "Prepare";
-	
+		firstWave ();
+	}
+
+	private void firstWave(){
+		StartCoroutine (CreateDivision ());
 	}
 	
-	IEnumerator StartGame ()
+	IEnumerator CreateDivision ()
 	{
-		yield return new WaitForSeconds (timeUntilFirstWave);
-		for (int i = 0; i < CreateWaves.Length; i++){
-			BeforeWaveText.text = "Division #" +(i+1)+" is coming!";
-			yield return new WaitForSeconds (textTime);
-			BeforeWaveText.text = "";
-			Instantiate (CreateWaves[i], this.transform.position, Quaternion.identity);
-			yield return new WaitForSeconds (TimeBeforeNextRoundInSec[i]);//Delay before next round
-			print (TimeBeforeNextRoundInSec[i]);
-		}
-		BeforeWaveText.text = "";//"You win";
+		yield return new WaitForSeconds (TimeBeforeNextRoundInSec);//Delay before next round
+		BeforeWaveText.text = "Division #" +(currentWave+1)+" is coming!";
+		yield return new WaitForSeconds (textTime);
+		BeforeWaveText.text = "";
+		Instantiate (CreateWaves[currentWave], this.transform.position, Quaternion.identity);
+		EnemiesCount = CreateWaves[currentWave].gameObject.GetComponent<CreateEnemeyWaves>().GetTotalEnemiesInSet();
 	}
 
 	public void decreaseEnemyCount(){
-		EnemiesCount--;
-		print("Enemies count is "+EnemiesCount);
-	}
+			EnemiesCount--;
+			print ("Enemies count is " + EnemiesCount);
+			if (EnemiesCount == 0) {
+				currentWave++;
+				StartCoroutine (CreateDivision ());
+			}
+		}
 }

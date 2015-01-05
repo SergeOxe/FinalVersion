@@ -6,6 +6,7 @@ public class createEnemeiesWave : MonoBehaviour {
 	public Vector3[] positionValues;
 	public float[] timeUntilNextEnemy;
 	public float timeUntilFirstWave;
+	public int size;
 	
 	void Start (){
 		StartCoroutine (CreateWave ());
@@ -21,7 +22,6 @@ public class createEnemeiesWave : MonoBehaviour {
 	}
 
 	public int getEnemiesCount(){
-		print ("Enemies in this wave is " +enemies.Length);
 		return enemies.Length;
 	}
 }

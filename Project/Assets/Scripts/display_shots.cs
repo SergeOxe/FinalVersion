@@ -19,7 +19,6 @@ public class display_shots : MonoBehaviour {
 	}
 	
 	void Update () {
-		shots_to_display = controllerGameObject.GetComponent<Controller> ().getShotsCount();
 		shotsScore.text =  shots_to_display.ToString();
 
 	}

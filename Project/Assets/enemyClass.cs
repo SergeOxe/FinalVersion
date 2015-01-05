@@ -65,8 +65,6 @@ public class enemyClass : MonoBehaviour {
 	
 	private void Kill (){
 		createEnemyExplosion ();
-		GameObject gameManager = GameObject.FindGameObjectWithTag ("GameController");
-		gameManager.GetComponent<Controller>().increaseDeadenemyCount();
 
 		Instantiate (points, this.transform.position, Quaternion.identity);
 		GameController.GetComponent<Controller> ().addScore (pointsToScore);
@@ -112,7 +110,9 @@ public class enemyClass : MonoBehaviour {
 		
 	}
 	
-	private void DestroyThis(){
+	public void DestroyThis(){
+		GameObject gameManager = GameObject.FindGameObjectWithTag ("WaveManager");
+		gameManager.gameObject.GetComponent<WavesMangerScript>().decreaseEnemyCount();
 		Destroy (this.gameObject);
 	}
 	
