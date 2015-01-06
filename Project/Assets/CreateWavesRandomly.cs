@@ -3,24 +3,25 @@ using System.Collections;
 
 public class CreateWavesRandomly : MonoBehaviour {
 	public GameObject[] waves;
-	private GameObject[] RandomWaves;
+	public int[] RandomWaves ;
 	public float TimeUntilNextWave;
 	public float TimeUntilFirstWave;
 	public float TimeUntilNextRoundOfWaves;
 	public int TotalEnemiesInWaveSet;
 	private float direction;
+	private int numOfWaves;
 	
 	void Start (){
-		TotalEnemiesInWaveSet = 0;
-		int numOfWaves = Random.Range (3, 8);
-		print ("NUm of Waves " + numOfWaves);
-		RandomWaves = new GameObject[numOfWaves];
+		numOfWaves = Random.Range (3, 9);
+		print ("Num of Waves " + numOfWaves);
+		RandomWaves = new int[numOfWaves];
 		for (int i = 0; i < numOfWaves; i++) {
-			RandomWaves [i] = waves [Random.Range (1, waves.Length)];
-			TotalEnemiesInWaveSet = TotalEnemiesInWaveSet+ RandomWaves [i].gameObject.GetComponent<createEnemeiesWave> ().size;		
-			print("GetTotalEnemiesInSet RANDOM " + TotalEnemiesInWaveSet);
+			RandomWaves [i] = Random.Range (1, waves.Length);
+			TotalEnemiesInWaveSet = TotalEnemiesInWaveSet+ waves [RandomWaves [i]].gameObject.GetComponent<createEnemeiesWave> ().size;	
 		}
-		
+		print("hereeee" +TotalEnemiesInWaveSet);
+		print (GameObject.FindGameObjectWithTag ("WaveManager").name);
+		GameObject.FindGameObjectWithTag ("WaveManager").SendMessage ("setEnemyCount", TotalEnemiesInWaveSet);
 		StartCoroutine (CreateWaves ());
 	}
 	
@@ -32,16 +33,17 @@ public class CreateWavesRandomly : MonoBehaviour {
 				direction = -1f;
 			else
 				direction = 1f;
-			GameObject RandomWave =  Instantiate (RandomWaves[i], this.gameObject.transform.position, Quaternion.identity) as GameObject;
+			GameObject RandomWave =  Instantiate (waves[RandomWaves[i]], this.gameObject.transform.position, Quaternion.identity) as GameObject;
 			RandomWave.gameObject.transform.position = new Vector3(direction,RandomWave.transform.position.y,RandomWave.transform.position.z);
 			yield return new WaitForSeconds (TimeUntilNextWave);
 		}
-		//yield return new WaitForSeconds (TimeUntilNextRoundOfWaves);
+		yield return new WaitForSeconds (TimeUntilNextRoundOfWaves);
 		Destroy(this.gameObject);
 	}
 	
 	public int GetTotalEnemiesInSet(){
 		return TotalEnemiesInWaveSet;
 	}
+	
 }
 

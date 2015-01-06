@@ -119,10 +119,10 @@ public class startScreen : MonoBehaviour {
 		int finalScore = controllerGameObject.GetComponent<Controller> ().getScore ();
 		Debug.Log ("score" + finalScore);
 		Text curScore = GameObject.FindGameObjectWithTag ("final_score_text").GetComponent<Text> ();
-		curScore.text = "YOU SCORED: " + finalScore;
+		curScore.text = "SCORE: " + finalScore;
 
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
-		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
+		highScoreText.text = "High Score: " + PlayerPrefs.GetInt(highScoreKey,0);
 			
 		//gameOverSound.Play ();
 		paused = true;
@@ -144,10 +144,10 @@ public class startScreen : MonoBehaviour {
 		int finalScore = controllerGameObject.GetComponent<Controller> ().getScore ();
 		Debug.Log ("score" + finalScore);
 		Text curScore = GameObject.FindGameObjectWithTag ("final_score_text").GetComponent<Text> ();
-		curScore.text = "YOU SCORED: " + finalScore;
+		curScore.text = "SCORE: " + finalScore;
 		
 		Text highScoreText = GameObject.FindGameObjectWithTag ("high_score tag").GetComponent<Text> ();
-		highScoreText.text = "RECORD: " + PlayerPrefs.GetInt(highScoreKey,0);
+		highScoreText.text = "High Score: " + PlayerPrefs.GetInt(highScoreKey,0);
 		
 		//gameOverSound.Play ();
 

@@ -10,10 +10,6 @@ public class CreateEnemeyWaves : MonoBehaviour {
 	public bool isRandom;
 	
 	void Start (){
-		foreach (GameObject wave in waves) {
-			TotalEnemiesInWaveSet =TotalEnemiesInWaveSet+ wave.gameObject.GetComponent<createEnemeiesWave> ().getEnemiesCount();
-		}
-
 		StartCoroutine (CreateWaves ());
 	}
 	
@@ -32,4 +28,5 @@ public class CreateEnemeyWaves : MonoBehaviour {
 		print("GetTotalEnemiesInSet " + TotalEnemiesInWaveSet);
 		return TotalEnemiesInWaveSet;
 	}
+
 }

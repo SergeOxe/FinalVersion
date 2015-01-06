@@ -11,7 +11,6 @@ public class WavesMangerScript : MonoBehaviour {
 	public float TimeBeforeNextRoundInSec;
 	public float textTime;
 	public int EnemiesCount = 1;
-	public int countEnemiesInCreateWaves;
 
 	private int currentWave = 0;
 
@@ -30,19 +29,21 @@ public class WavesMangerScript : MonoBehaviour {
 	{
 		//The game is over
 		if (currentWave == CreateWaves.Length) {
-			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
-			manager.GetComponent<startScreen>().gameWon();
+				GameObject manager = GameObject.FindGameObjectWithTag ("game_manager");
+				manager.GetComponent<startScreen> ().gameWon ();
 		}
 		yield return new WaitForSeconds (TimeBeforeNextRoundInSec);//Delay before next round
-		BeforeWaveText.text = "Division #" +(currentWave+1)+" is coming!";
+		BeforeWaveText.text = "Division #" + (currentWave + 1) + " is coming!";
 		yield return new WaitForSeconds (textTime);
 		BeforeWaveText.text = "";
-		Instantiate (CreateWaves[currentWave], this.transform.position, Quaternion.identity);
-		if (CreateWaves [currentWave].gameObject.GetComponent<CreateEnemeyWaves> ().isRandom) {
-			EnemiesCount = CreateWaves [currentWave].gameObject.GetComponent<CreateWavesRandomly> ().GetTotalEnemiesInSet ();
-			print ("im here");	
-		}else
-			EnemiesCount = CreateWaves[currentWave].gameObject.GetComponent<CreateEnemeyWaves>().GetTotalEnemiesInSet();
+		print (CreateWaves [currentWave].name);
+		GameObject newWave = Instantiate (CreateWaves [currentWave], this.transform.position, Quaternion.identity) as GameObject;
+		print (newWave.tag);
+		if (newWave.tag == "CreateWaveRandomly") {
+			//EnemiesCount = newWave.gameObject.GetComponent<CreateWavesRandomly>().TotalEnemiesInWaveSet;
+		} else {
+			EnemiesCount = newWave.gameObject.GetComponent<CreateEnemeyWaves> ().GetTotalEnemiesInSet ();
+		}
 	}
 
 	public void decreaseEnemyCount(){
@@ -53,4 +54,10 @@ public class WavesMangerScript : MonoBehaviour {
 				StartCoroutine (CreateDivision ());
 			}
 		}
+
+	public void setEnemyCount(int count){
+		EnemiesCount = count;
+		print ("total "+ EnemiesCount);
+
+	}
 }
