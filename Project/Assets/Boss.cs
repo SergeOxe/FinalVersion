@@ -17,8 +17,6 @@ public class Boss : MonoBehaviour {
 		if (EnemyClassHP <= 0) {
 
 		//	StartCoroutine(wait());
-			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
-			manager.GetComponent<startScreen>().gameWon();
 				}
 	
 	}

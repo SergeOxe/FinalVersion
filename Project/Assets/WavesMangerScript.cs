@@ -28,12 +28,21 @@ public class WavesMangerScript : MonoBehaviour {
 	
 	IEnumerator CreateDivision ()
 	{
+		//The game is over
+		if (currentWave == CreateWaves.Length) {
+			GameObject manager = GameObject.FindGameObjectWithTag("game_manager");
+			manager.GetComponent<startScreen>().gameWon();
+		}
 		yield return new WaitForSeconds (TimeBeforeNextRoundInSec);//Delay before next round
 		BeforeWaveText.text = "Division #" +(currentWave+1)+" is coming!";
 		yield return new WaitForSeconds (textTime);
 		BeforeWaveText.text = "";
 		Instantiate (CreateWaves[currentWave], this.transform.position, Quaternion.identity);
-		EnemiesCount = CreateWaves[currentWave].gameObject.GetComponent<CreateEnemeyWaves>().GetTotalEnemiesInSet();
+		if (CreateWaves [currentWave].gameObject.GetComponent<CreateEnemeyWaves> ().isRandom) {
+			EnemiesCount = CreateWaves [currentWave].gameObject.GetComponent<CreateWavesRandomly> ().GetTotalEnemiesInSet ();
+			print ("im here");	
+		}else
+			EnemiesCount = CreateWaves[currentWave].gameObject.GetComponent<CreateEnemeyWaves>().GetTotalEnemiesInSet();
 	}
 
 	public void decreaseEnemyCount(){

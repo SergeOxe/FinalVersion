@@ -7,6 +7,7 @@ public class CreateEnemeyWaves : MonoBehaviour {
 	public float TimeUntilFirstWave;
 	public float TimeUntilNextRoundOfWaves;
 	public int TotalEnemiesInWaveSet = 0;
+	public bool isRandom;
 	
 	void Start (){
 		foreach (GameObject wave in waves) {

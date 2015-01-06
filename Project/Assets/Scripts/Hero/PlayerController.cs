@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour {
 	int currentBull;
 	public GameObject guiGO;
 
+
+	public int PointsLostWhenHit;
+	public int PointsReward;
+
 	void Start(){
 		currentBull = 0;
 		FPS = bullets [currentBull].gameObject.GetComponent<HeroShot> ().getFPS ();
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void Hit () {
 		HP--;
+		GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller> ().addScore (PointsLostWhenHit);
 		downgradeShots ();
 		int i = Random.Range (0, ouchBear.Length);
 		AudioSource.PlayClipAtPoint (ouchBear [i], transform.position);
@@ -129,14 +134,16 @@ public class PlayerController : MonoBehaviour {
 					this.Hit();
 					i = Random.Range (0, bombClips.Length);
 					AudioSource.PlayClipAtPoint (bombClips [i], transform.position);
-						break;
+					break;
 				case Enum_RewardType.LIVES: 
 						addLive();
+						GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller> ().addScore (PointsReward);
 						i = Random.Range (0, rewardLiveClips.Length);
 						AudioSource.PlayClipAtPoint (rewardLiveClips [i], transform.position);
 						break;
 				case Enum_RewardType.SHOTS:
 						upgradeShots();
+						GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller> ().addScore (PointsReward);
 						i = Random.Range (0, yayClips.Length);
 						AudioSource.PlayClipAtPoint (yayClips [i], transform.position);
 						break;
