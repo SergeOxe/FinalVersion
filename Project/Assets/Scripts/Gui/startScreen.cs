@@ -51,7 +51,7 @@ public class startScreen : MonoBehaviour {
 		// Restart this level
 		gameOverSound.Stop ();
 		this.Play ();
-		Application.LoadLevel(1);
+		Application.LoadLevel(2);
 	}
 	
 	public void startGame()
