@@ -107,7 +107,7 @@ public class startScreen : MonoBehaviour {
 	{
 		StartCoroutine (wait ());
 		int i = Random.Range (0, gameoverClips.Length);
-		AudioSource.PlayClipAtPoint (gameoverClips [i], transform.position);
+//		AudioSource.PlayClipAtPoint (gameoverClips [i], transform.position);
 		//gameOverSound.Play ();
 		Time.timeScale = 0;
 		Debug.Log ("game over");
