@@ -11,6 +11,7 @@ public class WavesMangerScript : MonoBehaviour {
 	public float TimeBeforeNextRoundInSec;
 	public float textTime;
 	public int EnemiesCount = 1;
+	public float gameWonWait;
 
 	private int currentWave = 0;
 
@@ -29,6 +30,7 @@ public class WavesMangerScript : MonoBehaviour {
 	{
 		//The game is over
 		if (currentWave == CreateWaves.Length) {
+				yield return new WaitForSeconds (gameWonWait);
 				GameObject manager = GameObject.FindGameObjectWithTag ("game_manager");
 				manager.GetComponent<startScreen> ().gameWon ();
 		}
@@ -57,7 +59,6 @@ public class WavesMangerScript : MonoBehaviour {
 
 	public void setEnemyCount(int count){
 		EnemiesCount = count;
-		print ("total "+ EnemiesCount);
 
 	}
 }
