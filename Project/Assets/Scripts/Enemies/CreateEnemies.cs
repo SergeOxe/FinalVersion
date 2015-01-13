@@ -17,8 +17,6 @@ public class CreateEnemies : MonoBehaviour {
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
-		while (true)
-		{
 			for (int i = 0; i < hazardCount; i++){
 				int j = Random.Range(0,enemies.Length);
 
@@ -39,7 +37,5 @@ public class CreateEnemies : MonoBehaviour {
 				Instantiate (enemies[j], spawnPosition, Quaternion.identity);
 				yield return new WaitForSeconds (spawnWait);
 			}
-			yield return new WaitForSeconds (waveWait);
-		}
 	}
 }

@@ -9,8 +9,10 @@ public class DestroyOnCollision : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "enemy") {
 			col.gameObject.GetComponent<enemyClass> ().DestroyThis ();
-			GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller> ().addScore (PointsDecreaseWhenEnemyIsLEavingTheScreen);
-			Instantiate (points, this.transform.position+offset, Quaternion.identity);
+			if(points != null){
+				GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller> ().addScore (PointsDecreaseWhenEnemyIsLEavingTheScreen);
+				Instantiate (points, col.transform.position+offset, Quaternion.identity);
+			}
 		} else
 			Destroy (col.gameObject);
 		}
