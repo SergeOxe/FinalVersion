@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip[] bombClips;
 	public AudioClip[] yayClips;
 	public AudioClip[] ouchBear;
-	private float FPS;
+	public float FPS;
 	private float timeLeft;
 	int currentBull;
 	public GameObject guiGO;
@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Start(){
 		currentBull = 0;
-		FPS = bullets [currentBull].gameObject.GetComponent<HeroShot> ().getFPS ();
+		//FPS = bullets [currentBull].gameObject.GetComponent<HeroShot> ().getFPS ();
+
 		anim = GetComponent<Animator> ();
 		facingRight = true;
 		healthBarImage = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image> ();
@@ -43,12 +44,20 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {	
+		if (Input.GetMouseButtonUp (0) || Input.GetKeyUp (KeyCode.Space)) {
+			Instantiate (bullets [currentBull], this.transform.position + offsetBullet, Quaternion.identity);
+			timeLeft = FPS;
+			}
+		if (Application.isMobilePlatform) {
+			if((Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetTouch(0).phase == TouchPhase.Stationary){
 				timeLeft -= Time.deltaTime;
-				if ( timeLeft < 0 ){
+				if (timeLeft < 0) {
 					//Shoot constantly
 					Instantiate (bullets [currentBull], this.transform.position + offsetBullet, Quaternion.identity);
 					timeLeft = FPS;
 				}
+			}
+		}
 	}
 
 
@@ -56,14 +65,17 @@ public class PlayerController : MonoBehaviour {
 		float horizontal;
 		if (!Application.isMobilePlatform) {
 			horizontal = Input.GetAxis ("Horizontal");
+
 		} else { 	
 			//horizontal = Input.acceleration.x;
-				if(Input.GetTouch(0).phase == TouchPhase.Moved){
-					horizontal = Input.GetTouch(0).deltaPosition.x;
-					speed = 0.4f;
-				}else
-					horizontal = 0;
+			if(Input.GetTouch(0).phase == TouchPhase.Moved){
+				horizontal = Input.GetTouch(0).deltaPosition.x;
+				speed = 0.5f;
+			}else
+				horizontal = 0;
+		
 		}
+	
 		
 
 		anim.SetFloat ("Speed", Mathf.Abs (horizontal));
@@ -175,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 		if (currentBull > 0) 
 		{
 			currentBull--;
-			FPS = bullets [currentBull].gameObject.GetComponent<HeroShot> ().getFPS ();
+			//FPS = bullets [currentBull].gameObject.GetComponent<HeroShot> ().getFPS ();
 		}
 	}
 

@@ -21,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
 	// Start playing the game
 	public void Play()
 	{
-		Application.LoadLevel(2);
+		Application.LoadLevel(1);
 	}
 
 	// Quit the game
